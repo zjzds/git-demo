@@ -1,0 +1,31 @@
+const mongoose = require("mongoose");
+const { DBHOST, DBPORT, DBNAME } = require("../config/config");
+
+module.exports = function db(success, error, close) {
+  if (typeof error !== "function") {
+    /* 给他一个函数 */
+    error = () => {
+      console.log("连接失败~~~~");
+    };
+  }
+  if (typeof close !== "function") {
+    close = () => {
+      console.log("连接关闭~~");
+    };
+  }
+  /* 连接数据库 */
+  mongoose.connect(`mongodb://${DBHOST}:${DBPORT}/${DBNAME}`);
+
+  mongoose.connection.once("open", function () {
+    // console.log("连接成功~~");
+    success();
+  });
+
+  mongoose.connection.on("error", () => {
+    error();
+  });
+
+  mongoose.connection.on("close", () => {
+    close();
+  });
+};
