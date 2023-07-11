@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const { DBHOST, DBPORT, DBNAME } = require("../config/config");
 
 /*
-  连接数据库db  再次修改
+  连接数据库db  再次修改 master test
 */
 module.exports = function db(success, error, close) {
   if (typeof error !== "function") {
