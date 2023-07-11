@@ -4,6 +4,7 @@ const { DBHOST, DBPORT, DBNAME } = require("../config/config");
 
 /*
   连接数据库db  再次修改 master test
+  连接数据库db hot-fix test 再次修改
 */
 module.exports = function db(success, error, close) {
   if (typeof error !== "function") {
